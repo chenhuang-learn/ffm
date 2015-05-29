@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Thu May 28 16:53:05 CST 2015
+onejar.license.required=true
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=false
+jarname=ffm.jar
+manifest.mergeall=true
+manifest.mainclass=ffm.FFMModel
+manifest.file=<createnew>
+jarname.isextern=false
+onejar.expand=
+excludes=
+includes=
