@@ -1,1 +1,34 @@
 field-aware factorization machine implemented by java with an experiment using criteo data set.
+================================================================================================
+
+Get The DataSet
+================
+refer to: https://github.com/guestwalk/kaggle-2014-criteo/blob/master/README, 'Get The Dataset' part.
+
+Run main_script.sh
+===================
+feature_engineer --> split train/validation set --> subsample --> change to libffm format.
+then run libffm:
+-----------------------------------------------------------------------------------
+java -Xmx65g -jar ffm.jar <eta> <lambda> <iter> <factor> <norm> <rand> <trset> <vaset>
+-----------------------------------------------------------------------------------
+eta: used for learning rate
+lambda: used for L2 regularization
+iter: max iterations
+factor: latent factor num
+norm: instance wise normalization
+rand: use random instance order when training
+trset: train set
+vaset: validation set
+
+Experiment Results:
+norm and rand only affect training speed.
+best eta is about 0.1, bigger eta hurt validation logloss, smaller eta get slow convergence.
+------------------------------------------------------------------------------------------
+when eta=0.1, factor=4, iter=10:
+lambda            0.00000  0.00001  0.00010  0.00100  0.01000  0.10000
+best_logloss      0.45061  0.44930  0.44951  0.46919  0.58700  0.69321
+best_logloss iter      3        5        10       10       10       10(very slow)
+-------------------------------------------------------------------------------------------
+when lambda=0.0001, eta=0.1, iter=30:
+k=4,8,12 doesn't affect best_logloss and best_logloss iter.
